@@ -15,3 +15,7 @@ class Todo(TodoBase):
 
     class Config:
         orm_mode = True
+
+
+class SuccessMessage(BaseModel):
+    message: str

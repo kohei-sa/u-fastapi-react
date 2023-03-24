@@ -1,17 +1,17 @@
-# EndPoint, Responseを定義
 from pydantic import BaseModel
 
 
-class Todo(BaseModel):
-    id: str
+class TodoBase(BaseModel):
     title: str
     description: str
 
 
-class TodoBody(BaseModel):
-    title: str
-    description: str
+class TodoCreate(TodoBase):
+    pass
 
 
-class SuccessMsg(BaseModel):
-    message: str
+class Todo(TodoBase):
+    id: int
+
+    class Config:
+        orm_mode = True

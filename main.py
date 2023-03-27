@@ -46,7 +46,6 @@ def read_todo(todo_id: int, db: Session = Depends(get_db)):
 def update_todo(todo_id: int, data: schemas.TodoCreate,
                 db: Session = Depends(get_db)):
     db_todo = crud.update_todo(db, todo_id=todo_id, data=data)
-    print("new_title: ", db_todo.title)
     if db_todo:
         return db_todo
     raise HTTPException(status_code=404, detail="Update task faild")

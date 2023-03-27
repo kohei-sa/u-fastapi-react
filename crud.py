@@ -27,7 +27,6 @@ def update_todo(db: Session,
                 todo_id: int,
                 data: dict) -> Union[dict, bool]:
     todo = db.query(models.Todo).filter(models.Todo.id == todo_id).first()
-    print("old_title", todo.title)
     if todo:
         todo.title = data.title
         todo.description = data.description

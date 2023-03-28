@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 
 class TodoBase(BaseModel):
@@ -19,3 +20,22 @@ class Todo(TodoBase):
 
 class SuccessMessage(BaseModel):
     message: str
+
+
+class UserBase(BaseModel):
+    email: str
+
+
+class UserCreate(UserBase):
+    password: str
+
+
+class UserLogin(UserBase):
+    password: str
+
+
+class User(UserBase):
+    id: Optional[int]
+
+    class Config:
+        orm_mode = True

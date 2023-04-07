@@ -21,12 +21,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/">
-          <Auth />
-        </Route>
-        <Route path="todo">
-          <Todo />
-        </Route>
+        <Route path="/" element={<Auth />} />
+        <Route path="/todo" element={<Todo />} />
       </Routes>
     </BrowserRouter>
   )

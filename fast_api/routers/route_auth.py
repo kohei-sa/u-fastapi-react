@@ -50,7 +50,7 @@ def login(requset: Request, response: Response,
 def logout(requset: Request, response: Response,
            csrf_protect: CsrfProtect = Depends()):
     csrf_token = csrf_protect.get_csrf_from_headers(requset.headers)
-    csrf_protect.vtalidate_csrf(csrf_token)
+    csrf_protect.validate_csrf(csrf_token)
     response.set_cookie(
         key="access_token",
         value="",

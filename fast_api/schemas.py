@@ -13,6 +13,9 @@ class TodoBase(BaseModel):
     title: str
     description: str
 
+    class Config:
+        orm_mode = True
+
 
 class TodoCreate(TodoBase):
     pass
@@ -32,6 +35,9 @@ class SuccessMessage(BaseModel):
 class UserBase(BaseModel):
     email: str
 
+    class Config:
+        orm_mode = True
+
 
 class UserCreate(UserBase):
     password: str
@@ -43,9 +49,6 @@ class UserLogin(UserBase):
 
 class User(UserBase):
     id: Optional[int]
-
-    class Config:
-        orm_mode = True
 
 
 class Csrf(BaseModel):

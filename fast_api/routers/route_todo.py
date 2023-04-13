@@ -13,7 +13,7 @@ router = APIRouter()
 auth = AuthJwtCsrf()
 
 
-@router.post("/api/todo/", response_model=schemas.Todo)
+@router.post("/api/todo", response_model=schemas.Todo)
 def create_todo(request: Request, response: Response,
                 todo: schemas.TodoCreate,
                 db: Session = Depends(get_db),
@@ -32,7 +32,7 @@ def create_todo(request: Request, response: Response,
     raise HTTPException(status_code=404, detail="Create task faild")
 
 
-@router.get("/api/todo/", response_model=list[schemas.Todo])
+@router.get("/api/todo", response_model=list[schemas.Todo])
 def read_todos(request: Request,
                skip: int = 0, limit: int = 100,
                db: Session = Depends(get_db)):

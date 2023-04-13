@@ -57,7 +57,6 @@ export const Auth: FC = () => {
           <button
             className="disabled:opacity-40 py-2 px-4 rounded text-white bg-indigo-600"
             disabled={!email || !pw}
-          // type="button"
           >
             {isLogin ? 'Login' : 'Sign Up'}
           </button>

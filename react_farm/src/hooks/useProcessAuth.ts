@@ -4,14 +4,15 @@ import { useQueryClient } from 'react-query';
 import { useMutateAuth } from './useMutateAuth';
 
 export const useProcessAuth = () => {
-    const navigation =  useNavigate()
+    const navigation = useNavigate()
     const queryClient = useQueryClient()
     const [email, setEmail] = useState('')
     const [pw, setPw] = useState('')
     const [isLogin, setIsLogin] = useState(true)
-    const {loginMutation, registerMutation, logoutMutation} = useMutateAuth()
+    const { loginMutation, registerMutation, logoutMutation } = useMutateAuth()
 
     const processAuth = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         if (isLogin) {
             loginMutation.mutate({
                 email: email,
@@ -19,20 +20,20 @@ export const useProcessAuth = () => {
             })
         } else {
             await registerMutation
-            .mutateAsync({
-                email: email,
-                password: pw,
-            })
-            .then(() => {
-                loginMutation.mutate({
+                .mutateAsync({
                     email: email,
                     password: pw,
                 })
-            }) 
-            .catch(() => {
-                setPw('')
-                setEmail('')
-            })
+                .then(() => {
+                    loginMutation.mutate({
+                        email: email,
+                        password: pw,
+                    })
+                })
+                .catch(() => {
+                    setPw('')
+                    setEmail('')
+                })
         }
     }
 
@@ -43,7 +44,7 @@ export const useProcessAuth = () => {
         queryClient.removeQueries('single')
         navigation('/')
     }
-    return { 
+    return {
         email,
         setEmail,
         pw,
